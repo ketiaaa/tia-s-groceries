@@ -1,0 +1,251 @@
+<html>
+    <style type="text/css">
+        body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type=email] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 20px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+
+.required:after {
+  content:" *";
+  color: red;
+}
+</style>
+<body>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<h2>Checkout Form</h2>
+<p>Please fill in all the details correctly.</p>
+    <div class="row">
+      <div class="col-75">
+        <div class="container">
+          <form onSubmit="purchaseHandler(); return false;">
+            <!--Billing Address-->
+            <div class="row">
+              <div class="col-50">
+                <h3>Billing Address</h3>
+                <label for="fname" class="required"><i class="fa fa-user"></i> Full Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Soksophoanketia Chantha" required>
+                
+                <label for="email" class="required"><i class="fa fa-envelope"></i> Email</label>
+                <input type="email" id="email" name="email" placeholder="soksophoanketia.chantha@student.uts.edu.au" required>
+                
+                <label for="adr" class="required"><i class="fa fa-address-card-o"></i> Address</label>
+                <input type="text" id="adr" name="address" placeholder="1 Clarence St" required>
+                
+                <div class="row">
+                  <div class="col-25">
+                    <label for="suburb" class="required"><i class="fa fa-institution"></i> Suburb</label>
+                    <input type="text" id="suburb" name="suburb" placeholder="Strathfield" required>
+                  </div>
+                  
+                  <div class="col-25">
+                    <label for="city" class="required"><i class="fa fa-institution"></i> City</label>
+                    <input type="text" id="city" name="city" placeholder="Sydney" required>
+                  </div>
+                  
+                  <div class="col-50">
+                    <label for="country" class="required"><i class="fa fa-institution"></i> Country</label>
+                    <input type="text" id="country" name="country" placeholder="Australia" required>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-50">
+                    <label for="state" class="required">State</label>
+                    <input type="text" id="state" name="state" placeholder="NSW" required>
+                  </div>
+                  
+                  <div class="col-50">
+                    <label for="zip" class="required">Zip</label>
+                    <input type="text" id="zip" name="zip" placeholder="2135" required>
+                  </div>
+                </div>
+              </div>
+              
+              <!--Payment-->
+              <div class="col-50">
+                <h3>Payment</h3>
+                <label for="fname">Accepted Cards</label>
+                
+                <div class="icon-container">
+                  <i class="fa fa-cc-visa" style="color:navy;">Visa</i>
+                  <i class="fa fa-cc-amex" style="color:blue;">Amex</i>
+                  <i class="fa fa-cc-mastercard" style="color:orange;">Mastercard</i>
+                </div>
+                
+                <label for="cname" class="required">Name on Card</label>
+                <input type="text" id="cname" name="cardname" placeholder="Soksophoanketia" required>
+                
+                <label for="ccnum" class="required">Credit card number</label>
+                <input type="text" id="ccnum" name="cardnumber" placeholder="4242-4242-4242-4242" required>
+                
+                <label for="expmonth" class="required">Exp Month</label>
+                <input type="text" id="expmonth" name="expmonth" placeholder="April" required>
+                
+                <div class="row">
+                  <div class="col-50">
+                    <label for="expyear" class="required">Exp Year</label>
+                    <input type="text" id="expyear" name="expyear" placeholder="2026" required>
+                  </div>
+                  
+                  <div class="col-50">
+                    <label for="cvv" class="required">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123" required>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <label>
+              <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+            </label>
+            <input type="submit" value="Purchase" class="btn">
+          </form>
+        </div>
+      </div>
+      <div class="col-25"></div>
+      <script src="https://smtpjs.com/v3/smtp.js"></script>
+      <script>
+          // Function to handle form submission
+          function purchaseHandler() {
+              console.log("Purchase button clicked");
+              // Check if the email is valid using regex
+              let regex = /\S+@\S+\.\S+/;
+              let email = document.getElementById("email").value;
+              if (regex.test(email)) {
+                  console.log("Email is valid");
+                  // If email is valid, display a success message
+                  alert("Purchase is Successful!");
+                  // Reload the parent page
+                  window.parent.location.reload();
+              } else {
+                  console.log("Email is invalid");
+                  // If email is invalid, display an error message
+                  alert("Invalid email!");
+              }
+          }
+  
+          // Event listener for form submission
+          document.addEventListener("DOMContentLoaded", function() {
+              let form = document.getElementById("checkout-form");
+              if (form) {
+                  form.addEventListener("submit", function(event) {
+                      console.log("Form submitted");
+                      // Prevent default form submission
+                      event.preventDefault();
+                      // Call purchaseHandler function
+                      purchaseHandler();
+                  });
+              } else {
+                  console.error("Form element not found");
+              }
+          });
+      </script>
+</body>
+</html>
